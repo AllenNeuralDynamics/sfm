@@ -6,37 +6,9 @@ This is a repository template to quickly setup a python library project. This re
 
 ##  Getting Started
 
-- To use this template, click the green ``Use this template`` button and ``Create new repository``.
-- [Install uv](https://docs.astral.sh/uv/getting-started/installation/)
-
-## Tools
-
-### Package/Project Management 
-
-This project utilizes [uv](https://docs.astral.sh/uv/) to handle installing dependencies as well as setting up environments for this project. It replaces tool like pip, poetry, virtualenv, and conda. 
-
-This project also uses [tox](https://tox.wiki/en/latest/index.html) for orchestrating multiple testing environments that mimics the github actions CI/CD so that you can test the workflows locally on your machine before pushing changes. 
-
-### Code Quality Check
-
-The following are tools used to ensure code quality in this project. 
-
-- Unit Testing
-
 ```bash
-uv run pytest tests
-```
-
-- Linting
-
-```bash
-uv run ruff check
-```
-
-- Type Check
-
-```bash
-uv run mypy src/mypackage
+pip install -e .
+python -m sfm.main
 ```
 
 ## Documentation
