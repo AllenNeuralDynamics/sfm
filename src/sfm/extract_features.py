@@ -22,8 +22,6 @@ def main(
     as_half: bool = True,
 ) -> Path:
     """Extract local features from an image path and save to an HDF5 file."""
-    print("image_name", Path(image).as_posix)
-
     image_path = Path(image_dir/image)
     assert image_path.exists(), f"Image not found: {image_path}"
 
@@ -81,7 +79,6 @@ def main(
 
     # Use relative image path as key (preserves folder structure in h5)
     image_name = Path(image).as_posix()
-    print("image_name", image_name)
 
     with h5py.File(str(export_path), "a", libver="latest") as fd:
         if image_name in fd:
