@@ -1,4 +1,4 @@
-from mypackage.main import beep_boop
+from sfm.main import main
 
 def test_method() -> None:
-    assert beep_boop('Howdy') == 'H0wdy' 
+    assert main() == {}

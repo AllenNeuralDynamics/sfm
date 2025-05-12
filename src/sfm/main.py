@@ -8,10 +8,10 @@ from sfm.pairs_from_exhaustive import pairs_from_exhaustive
 from sfm.localize_sfm import QueryLocalizer, pose_from_cluster
 from pathlib import Path
 
-
 images_dir = Path(r"C:\Users\hanna.lee\Documents\00_Parallax\002_TestCode\000_ReticleImages")
 query = "queries/Microscope_3_20250403-094514.png"
 export_path = Path(r"C:\Users\hanna.lee\Documents\sfm_output")
+
 
 def main(export_path: Path=export_path, query: str=query, visualize: bool=True) -> dict:
     # Reconstruct
