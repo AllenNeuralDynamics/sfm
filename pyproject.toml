@@ -7,15 +7,16 @@ authors = [
 readme = "README.md"
 requires-python = "~=3.8"
 dependencies = [
-  pycolmap=="3.11",
-  plotly,
-  opencv-python,
-  h5py,
-  Pillow,
-  tqdm,
+  "pycolmap==3.11",
+  "plotly",
+  "opencv-python",
+  "h5py",
+  "Pillow",
+  "tqdm",
   "lightglue @ git+https://github.com/cvg/LightGlue.git",
   "torch @ https://download.pytorch.org/whl/cpu/torch-2.1.0%2Bcpu-cp38-cp38-win_amd64.whl",
 ]
+
 
 [tool.pytest.ini_options]
 pythonpath = ["src", "tests"]
