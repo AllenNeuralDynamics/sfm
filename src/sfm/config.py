@@ -31,12 +31,7 @@ model_dir = Path(__file__).resolve().parent / "dataset" / "reticle_model"
 reference_img_path = model_dir / "images_name.txt"
 if not reference_img_path.exists():
     raise FileNotFoundError(f"Reference image list not found at {reference_img_path}")
-
-"""
-model_dir = Path(__file__).resolve().parent.parent.parent / "dataset" / "reticle_model"
-reference_img_path = model_dir / "images_name.txt"""
 references = [line.strip() for line in reference_img_path.read_text().splitlines() if line.strip()]
-print(f"Reference images: {references}")
 
 # feature and matcher configurations
 feature_conf = feature_conf_list["superpoint_parallax"]

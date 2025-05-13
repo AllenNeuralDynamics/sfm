@@ -14,7 +14,7 @@ export_path = Path(r"C:\Users\hanna.lee\Documents\sfm_output")
 
 
 def main(export_path: Path=export_path, query: str=query, visualize: bool=True) -> dict:
-    print(f"Reference images: {references}")
+    print("Sfm localization started...")
 
     # Reconstruct
     model = pycolmap.Reconstruction(model_dir)

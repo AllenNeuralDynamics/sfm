@@ -1,13 +1,26 @@
 import sys
 from pathlib import Path
+import os
 
 import torch
-
 from ..utils.base_model import BaseModel
 
-sys.path.append(str(Path(__file__).parent / "../../../external"))
-from SuperGluePretrainedNetwork.models import superpoint  # noqa E402
+# 1. Check if Parallax provided an external path via environment variable
+external_path_str = os.environ.get("PARALLAX_EXTERNAL_PATH")
+if external_path_str:
+    external_path = Path(external_path_str)
+    if external_path.exists() and str(external_path) not in sys.path:
+        sys.path.append(str(external_path))
+        print(f"[INFO] Using external path from PARALLAX_EXTERNAL_PATH: {external_path}")
+else:
+    print("[INFO] Using pretrained model in sfm/external/...")
+    # 2. Fallback to local path resolution (sfm/external)
+    local_external = Path(__file__).resolve().parent.parent.parent.parent / "external"
+    if local_external.exists() and str(local_external) not in sys.path:
+        sys.path.append(str(local_external))
+        print(f"[INFO] Using local external path: {local_external}")
 
+from SuperGluePretrainedNetwork.models import superpoint  # noqa E402
 
 # The original keypoint sampling is incorrect. We patch it here but
 # we don't fix it upstream to not impact exisiting evaluations.
