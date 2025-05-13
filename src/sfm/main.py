@@ -1,6 +1,6 @@
 import pycolmap
 import time
-from sfm.config import model_dir, references, FLIR_CAMERA, feature_conf, matcher_conf
+from config import model_dir, references, FLIR_CAMERA, feature_conf, matcher_conf
 from sfm.visualize import visualize_query_pose
 from sfm.extract_features import main as extract_features_main
 from sfm.match_features import main as match_features
@@ -68,10 +68,12 @@ def main(export_path: Path=export_path, query: str=query, visualize: bool=True) 
     if visualize:
         visualize_query_pose(model, query, ret, log, FLIR_CAMERA)
     
+        
     if "cam_from_world" in ret and "num_inliers" in ret:
         print(ret["cam_from_world"])
         print("num_inliers: ", ret["num_inliers"])
         return ret["cam_from_world"]
+
     return {}
 
 if __name__ == "__main__":
