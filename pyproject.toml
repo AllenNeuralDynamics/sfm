@@ -17,6 +17,11 @@ dependencies = [
   "torch @ https://download.pytorch.org/whl/cpu/torch-2.1.0%2Bcpu-cp38-cp38-win_amd64.whl",
 ]
 
-
 [tool.pytest.ini_options]
 pythonpath = ["src", "tests"]
+
+[tool.setuptools.package-data]
+"sfm.dataset.reticle_model" = ["*"]
+
+[tool.setuptools.include-package-data]
+true
