@@ -27,5 +27,5 @@ pythonpath = ["src", "tests"]
 [tool.setuptools.package-data]
 "sfm.dataset.reticle_model" = ["*"]
 
-[tool.setuptools.include-package-data]
-true
+[tool.setuptools]
+include-package-data = true
