@@ -1,11 +1,11 @@
 import pycolmap
 import time
-from config import model_dir, references, FLIR_CAMERA, feature_conf, matcher_conf
 from sfm.visualize import visualize_query_pose
 from sfm.extract_features import main as extract_features_main
 from sfm.match_features import main as match_features
 from sfm.pairs_from_exhaustive import pairs_from_exhaustive
 from sfm.localize_sfm import QueryLocalizer, pose_from_cluster
+from sfm.config import model_dir, references, FLIR_CAMERA, feature_conf, matcher_conf
 from pathlib import Path
 
 images_dir = Path(r"C:\Users\hanna.lee\Documents\00_Parallax\002_TestCode\000_ReticleImages")
