@@ -8,39 +8,27 @@ from sfm.localize_sfm import QueryLocalizer, pose_from_cluster
 from sfm.config import model_dir, references, FLIR_CAMERA, feature_conf, matcher_conf
 from pathlib import Path
 from typing import Optional
-
-
 images_dir = Path(r"C:\Users\hanna.lee\Documents\00_Parallax\002_TestCode\000_ReticleImages")
-query = "queries/Microscope_3_20250403-094514.png"
+query = "queries/22433200_20250424-153426.png"
 export_path = Path(r"C:\Users\hanna.lee\Documents\sfm_output")
 
-def main(images_dir: Path=images_dir,
-         query: str=query,
-         export_path: Path=export_path,
-         visualize: bool=False
-        ) -> Optional[dict]:
-    print("Sfm localization started...")
-
-    # Reconstruct
-    model = pycolmap.Reconstruction(model_dir)
-
-    # Feature extraction
-    start = time.time()
+def extract_and_match_features(images_dir: Path, query: str, export_path: Path):
+    """Extract and match features."""
     print("\nExtracting features...")
+    start = time.time()
     extract_features_main(
         conf=feature_conf,
         image_dir=images_dir,
         image=query,
         export_path=export_path / "features.h5"
     )
-    print(f"Feature extraction time: {time.time() - start} sec")
+    print(f"Feature extraction time: {time.time() - start} sec")    
     
-    # Matching
+    print("\nGenerating pairs and matching...")
     start = time.time()
-    print("\nMatching features...")
     pairs_from_exhaustive(
         output=export_path / "pairs-loc.txt",
-        image = query,
+        image=query,
         ref_list=references
     )
     match_features(
@@ -48,25 +36,23 @@ def main(images_dir: Path=images_dir,
         pairs=export_path / "pairs-loc.txt",
         features=export_path / "features.h5",
         matches=export_path / "matches.h5",
-        features_ref = model_dir / "features.h5",
+        features_ref=model_dir / "features.h5",
         overwrite=True
     )
     print(f"Match generation time: {time.time() - start} sec")
 
-    # Localize
-    start = time.time()
-    print("\nLocalizing...")
+def localize(export_path: Path, visualize: bool = False) -> Optional[dict]:
+    """Run localization only."""
+    print("\nStarting localization...")
+
+    model = pycolmap.Reconstruction(model_dir)
     localizer = QueryLocalizer(model, {
         "estimation": {
             "ransac": {
-                "max_error": 4.0,                # Tight geometric check, 1-4 px for 4K images
-                "min_inlier_ratio": 0.2,         # Expecting 20% inliers
-                "confidence": 0.99999,           # Very high confidence
-                "dyn_num_trials_multiplier": 3.0,# Allow dynamic adjustment based on inlier ratio
-                "min_num_trials": 1000,          # Allow enough attempts
-                "max_num_trials": 50000          # Allow more trials if needed
-                }
-            },
+                "max_error": 2.0,
+                "min_inlier_ratio": 0.2
+            }
+        },
         "refinement": {"refine_focal_length": False, "refine_extra_params": False}
     })
     
@@ -79,17 +65,24 @@ def main(images_dir: Path=images_dir,
         features_path=export_path / "features.h5",
         matches_path=export_path / "matches.h5"
     )
-    print(f"Localization time: {time.time() - start} sec")
 
-    if visualize:
+    if visualize and ret is not None:
         visualize_query_pose(model, query, ret, log, FLIR_CAMERA)
-    
-    if "cam_from_world" in ret and "num_inliers" in ret:
-        print("num_inliers: ", ret["num_inliers"])
-        print(ret["cam_from_world"].todict())
+
+    if ret is not None:
+        print("num_inliers:", ret["num_inliers"])
+        print("camera:", ret["camera"])
+        print("cam_from_world:", ret["cam_from_world"].todict())
         return ret["cam_from_world"].todict()
 
-    return
+    return None
+
+
+def main(images_dir: Path=images_dir, query: str=query, export_path: Path=export_path, visualize: bool = False):
+    print("Sfm localization started...")
+    extract_and_match_features(images_dir, query, export_path)
+    result = localize(export_path, visualize)
+    return result
 
 if __name__ == "__main__":
     main()
