@@ -14,7 +14,6 @@ images_dir = Path(r"C:\Users\hanna.lee\Documents\00_Parallax\002_TestCode\000_Re
 query = "queries/Microscope_3_20250403-094514.png"
 export_path = Path(r"C:\Users\hanna.lee\Documents\sfm_output")
 
-print("SFM imported...")
 def main(images_dir: Path=images_dir,
          query: str=query,
          export_path: Path=export_path,
@@ -58,7 +57,16 @@ def main(images_dir: Path=images_dir,
     start = time.time()
     print("\nLocalizing...")
     localizer = QueryLocalizer(model, {
-        "estimation": {"ransac": {"max_error": 20}},
+        "estimation": {
+            "ransac": {
+                "max_error": 4.0,                # Tight geometric check, 1-4 px for 4K images
+                "min_inlier_ratio": 0.2,         # Expecting 20% inliers
+                "confidence": 0.99999,           # Very high confidence
+                "dyn_num_trials_multiplier": 3.0,# Allow dynamic adjustment based on inlier ratio
+                "min_num_trials": 1000,          # Allow enough attempts
+                "max_num_trials": 50000          # Allow more trials if needed
+                }
+            },
         "refinement": {"refine_focal_length": False, "refine_extra_params": False}
     })
     
