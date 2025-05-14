@@ -12,7 +12,7 @@ images_dir = Path(r"C:\Users\hanna.lee\Documents\00_Parallax\002_TestCode\000_Re
 query = "queries/Microscope_3_20250403-094514.png"
 export_path = Path(r"C:\Users\hanna.lee\Documents\sfm_output")
 
-
+print("SFM imported...")
 def main(images_dir: Path=images_dir,
          query: str=query,
          export_path: Path=export_path,
