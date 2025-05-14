@@ -13,7 +13,11 @@ query = "queries/Microscope_3_20250403-094514.png"
 export_path = Path(r"C:\Users\hanna.lee\Documents\sfm_output")
 
 
-def main(export_path: Path=export_path, query: str=query, visualize: bool=True) -> dict:
+def main(images_dir: Path=images_dir,
+         query: str=query,
+         export_path: Path=export_path,
+         visualize: bool=False
+        ) -> dict:
     print("Sfm localization started...")
 
     # Reconstruct
