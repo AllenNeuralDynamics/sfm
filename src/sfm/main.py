@@ -7,6 +7,7 @@ from sfm.pairs_from_exhaustive import pairs_from_exhaustive
 from sfm.localize_sfm import QueryLocalizer, pose_from_cluster
 from sfm.config import model_dir, references, FLIR_CAMERA, feature_conf, matcher_conf
 from pathlib import Path
+from typing import Optional
 
 images_dir = Path(r"C:\Users\hanna.lee\Documents\00_Parallax\002_TestCode\000_ReticleImages")
 query = "queries/Microscope_3_20250403-094514.png"
@@ -17,7 +18,7 @@ def main(images_dir: Path=images_dir,
          query: str=query,
          export_path: Path=export_path,
          visualize: bool=False
-        ) -> dict | None:
+        ) -> Optional[dict]:
     print("Sfm localization started...")
 
     # Reconstruct
