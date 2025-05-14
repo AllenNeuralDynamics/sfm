@@ -17,7 +17,7 @@ def main(images_dir: Path=images_dir,
          query: str=query,
          export_path: Path=export_path,
          visualize: bool=False
-        ) -> dict:
+        ) -> dict | None:
     print("Sfm localization started...")
 
     # Reconstruct
@@ -80,7 +80,7 @@ def main(images_dir: Path=images_dir,
         print("num_inliers: ", ret["num_inliers"])
         return ret["cam_from_world"]
 
-    return {}
+    return
 
 if __name__ == "__main__":
     main()
