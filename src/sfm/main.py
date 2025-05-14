@@ -9,6 +9,7 @@ from sfm.config import model_dir, references, FLIR_CAMERA, feature_conf, matcher
 from pathlib import Path
 from typing import Optional
 
+
 images_dir = Path(r"C:\Users\hanna.lee\Documents\00_Parallax\002_TestCode\000_ReticleImages")
 query = "queries/Microscope_3_20250403-094514.png"
 export_path = Path(r"C:\Users\hanna.lee\Documents\sfm_output")
@@ -75,11 +76,10 @@ def main(images_dir: Path=images_dir,
     if visualize:
         visualize_query_pose(model, query, ret, log, FLIR_CAMERA)
     
-        
     if "cam_from_world" in ret and "num_inliers" in ret:
-        print(ret["cam_from_world"])
         print("num_inliers: ", ret["num_inliers"])
-        return ret["cam_from_world"]
+        print(ret["cam_from_world"].todict())
+        return ret["cam_from_world"].todict()
 
     return
 
