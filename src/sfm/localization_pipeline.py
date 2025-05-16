@@ -10,8 +10,8 @@ from pathlib import Path
 from typing import Optional
 
 
-def extract_and_match_features(images_dir: Path, query: str, export_path: Path):
-    """Extract and match features."""
+def extract_features(images_dir: Path, query: str, export_path: Path):
+    """Extract features for a query image."""
     print("\nExtracting features...")
     start = time.time()
     extract_features_main(
@@ -20,8 +20,10 @@ def extract_and_match_features(images_dir: Path, query: str, export_path: Path):
         image=query,
         export_path=export_path / "features.h5"
     )
-    print(f"Feature extraction time: {time.time() - start} sec")    
-    
+    print(f"Feature extraction time: {time.time() - start} sec")
+
+def match_features_to_ref(query: str, export_path: Path):
+    """Generate pairs and match query image features to reference features."""
     print("\nGenerating pairs and matching...")
     start = time.time()
     pairs_from_exhaustive(
@@ -38,6 +40,7 @@ def extract_and_match_features(images_dir: Path, query: str, export_path: Path):
         overwrite=True
     )
     print(f"Match generation time: {time.time() - start} sec")
+
 
 def localize(export_path: Path, query, visualize: bool = False) -> Optional[dict]:
     """Run localization only."""
