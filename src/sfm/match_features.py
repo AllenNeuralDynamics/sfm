@@ -188,16 +188,3 @@ def match_from_paths(
         writer_queue.put((pair, pred))
     writer_queue.join()
     logger.info("Finished exporting matches.")
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--pairs", type=Path, required=True)
-    parser.add_argument("--export_dir", type=Path)
-    parser.add_argument("--features", type=str, default="feats-superpoint-n4096-r1024")
-    parser.add_argument("--matches", type=Path)
-    parser.add_argument(
-        "--conf", type=str, default="superglue", choices=list(confs.keys())
-    )
-    args = parser.parse_args()
-    main(confs[args.conf], args.pairs, args.features, args.export_dir)

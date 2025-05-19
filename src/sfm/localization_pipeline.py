@@ -5,7 +5,7 @@ from sfm.extract_features import main as extract_features_main
 from sfm.match_features import main as match_features
 from sfm.pairs_from_exhaustive import pairs_from_exhaustive
 from sfm.localize_sfm import QueryLocalizer, pose_from_cluster
-from sfm.config import model_dir, references, FLIR_CAMERA, feature_conf, matcher_conf
+from sfm.config import model_dir, references, FLIR_CAMERA, feature_conf, matcher_conf, loc_config
 from pathlib import Path
 from typing import Optional
 
@@ -47,16 +47,7 @@ def localize(export_path: Path, query, visualize: bool = False) -> Optional[dict
     print("\nStarting localization...")
 
     model = pycolmap.Reconstruction(model_dir)
-    localizer = QueryLocalizer(model, {
-        "estimation": {
-            "ransac": {
-                "max_error": 2.0,
-                "min_inlier_ratio": 0.2
-            }
-        },
-        "refinement": {"refine_focal_length": False, "refine_extra_params": False}
-    })
-    
+    localizer = QueryLocalizer(model, loc_config)
     ref_ids = [model.find_image_with_name(r).image_id for r in references]
     ret, log = pose_from_cluster(
         localizer=localizer,
@@ -72,8 +63,8 @@ def localize(export_path: Path, query, visualize: bool = False) -> Optional[dict
 
     if ret is not None:
         print("num_inliers:", ret["num_inliers"])
-        print("camera:", ret["camera"])
+        #print("camera:", ret["camera"])
         print("cam_from_world:", ret["cam_from_world"].todict())
-        return ret["cam_from_world"].todict()
+        #return ret["cam_from_world"].todict()
 
     return None
