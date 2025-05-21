@@ -26,8 +26,9 @@ def localize(export_dir: str, query: str, visualize: bool=False) -> None:
 
     if ret is not None:
         n_in = ret["num_inliers"]
-        quat = ret['cam_from_world']['quat']
-        tvec = ret['cam_from_world']['translation']
+        pose = ret["cam_from_world"].todict()
+        quat = pose['cam_from_world']['quat']
+        tvec = pose['cam_from_world']['translation']
         print(quat[0], quat[1], quat[2], quat[3], tvec[0], tvec[1], tvec[2])
 
 if __name__ == "__main__":
