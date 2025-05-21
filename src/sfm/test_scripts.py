@@ -2,6 +2,7 @@ import subprocess
 from pathlib import Path
 import sys
 #from sfm.localization_pipeline import match_features_to_ref
+from sfm.cli_localize import localize
 print("Start")
 image_dir=r"C:\Users\hanna.lee\Documents\00_Parallax\002_TestCode\000_ReticleImages\test"
 query="22433200_20250424-134845.png"
@@ -29,9 +30,9 @@ def run_localize_cli(image_name, export_dir):
         sys.executable,
         str(Path(__file__).parent / "cli_localize.py"),
         "--query", image_name,
-        "--export_dir", export_dir,
-        "--visualize"
+        "--export_dir", export_dir
     ], check=True, capture_output=True, text=True)
+    #  option: "--visualize"
 
     if result.returncode != 0:
         print("Localization failed with error:")

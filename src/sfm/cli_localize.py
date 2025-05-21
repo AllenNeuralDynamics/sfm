@@ -21,15 +21,15 @@ def localize(export_dir: str, query: str, visualize: bool=False) -> None:
         matches_path=export_path / "matches.h5"
     )
 
-    if visualize and ret is not None:
-        visualize_query_pose(model, query, ret, log, FLIR_CAMERA)
-
     if ret is not None:
         n_in = ret["num_inliers"]
         pose = ret["cam_from_world"].todict()
-        quat = pose['cam_from_world']['quat']
-        tvec = pose['cam_from_world']['translation']
+        quat = pose['rotation']['quat']
+        tvec = pose['translation']
         print(quat[0], quat[1], quat[2], quat[3], tvec[0], tvec[1], tvec[2])
+
+    if visualize and ret is not None:
+        visualize_query_pose(model, query, ret, log, FLIR_CAMERA)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
