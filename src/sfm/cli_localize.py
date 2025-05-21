@@ -25,18 +25,10 @@ def localize(export_dir: str, query: str, visualize: bool=False) -> None:
         visualize_query_pose(model, query, ret, log, FLIR_CAMERA)
 
     if ret is not None:
-        result = {
-            "num_inliers": ret["num_inliers"],
-            "cam_from_world": ret["cam_from_world"].todict(),  # returns {'rotation': ..., 'translation': ...}
-        }
-        print(result)
-
-        """
-        # Save result to JSON
-        json_path = export_path / f"{Path(query).stem}_localization.json"
-        with open(json_path, "w") as f:
-            json.dump(result, f, indent=2)
-        """
+        n_in = ret["num_inliers"]
+        quat = ret['cam_from_world']['quat']
+        tvec = ret['cam_from_world']['translation']
+        print(quat[0], quat[1], quat[2], quat[3], tvec[0], tvec[1], tvec[2])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
