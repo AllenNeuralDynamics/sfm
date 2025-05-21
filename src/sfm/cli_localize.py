@@ -4,7 +4,6 @@ from sfm.localize_sfm import QueryLocalizer, pose_from_cluster
 from sfm.config import model_dir, references, FLIR_CAMERA, loc_config
 from pathlib import Path
 import argparse
-import json
 
 def localize(export_dir: str, query: str, visualize: bool=False) -> None:
     """Run localization only."""
@@ -22,7 +21,6 @@ def localize(export_dir: str, query: str, visualize: bool=False) -> None:
     )
 
     if ret is not None:
-        n_in = ret["num_inliers"]
         pose = ret["cam_from_world"].todict()
         quat = pose['rotation']['quat']
         tvec = pose['translation']
