@@ -1,16 +1,12 @@
-# aind-python-library-template
+# sfm
 [![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
+This project provides a lightweight, modular implementation of Structure-from-Motion (SfM) for 3D reconstruction using feature extraction, matching, and camera localization. It supports integration with SuperPoint for feature extraction, LightGlue for matching, and COLMAP models within the SfM pipeline.
 
-This is a repository template to quickly setup a python library project. This repository utilizes a tool called **uv** to handle all dependency and package management. For more information on this tool go to the [uv wiki](https://docs.astral.sh/uv/). 
 
 ##  Getting Started
 
-```bash
-pip install -e .
-python -m sfm.main
-```
-### Optional: Enable SuperPoint + SuperGlue Reticle Detection
+### Enable SuperPoint + SuperGlue Reticle Detection
 Parallax supports reticle detection using SuperPoint + LightGlue.
 To enable reticle detection using SuperPoint + SuperGlue, you must manually download 'SuperGluePretrainedNetwork' pretrained models.
 
@@ -34,8 +30,14 @@ sfm/
 │               └── superglue_indoor.pth
 ```
 
+
+```bash
+python -m sfm.scripts --image_dir /path/to/img_dir --query myimage.jpg --export_dir /path/to/export_dir
+```
+
 ## Documentation
 To generate the rst files source files for documentation, run
+
 ```bash
 sphinx-apidoc -o docs/source/ src
 ```
