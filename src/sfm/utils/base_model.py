@@ -1,8 +1,10 @@
+# Adapted from Hierarchical-Localization:
+# https://github.com/cvg/Hierarchical-Localization
+
 import inspect
 import sys
 from abc import ABCMeta, abstractmethod
 from copy import copy
-
 from torch import nn
 
 

@@ -1,3 +1,6 @@
+# Adapted from Hierarchical-Localization:
+# https://github.com/cvg/Hierarchical-Localization
+
 from collections import defaultdict
 from pathlib import Path
 from typing import List

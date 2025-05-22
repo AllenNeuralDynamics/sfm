@@ -58,5 +58,7 @@ Then to create the documentation HTML files, run
 sphinx-build -b html docs/source/ docs/build/html
 ```
 
+## Acknowledgment
+Portions of this codebase are adapted from the [Hierarchical Localization](https://github.com/cvg/Hierarchical-Localization) project by the Computer Vision Group at ETH Zurich. We thank the authors for their excellent work and open-source contribution.
 
 
