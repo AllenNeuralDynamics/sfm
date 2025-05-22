@@ -5,6 +5,12 @@ This project provides a lightweight, modular implementation of Structure-from-Mo
 
 
 ##  Getting Started
+### Installation
+```bash
+git clone https://github.com/AllenNeuralDynamics/sfm.git
+cd sfm
+pip install .
+```
 
 ### Enable SuperPoint + SuperGlue Reticle Detection
 Parallax supports reticle detection using SuperPoint + LightGlue.
