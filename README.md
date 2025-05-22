@@ -35,6 +35,7 @@ Run,
 ```bash
 python -m sfm.scripts --image_dir /path/to/img_dir --query myimage.jpg --export_dir /path/to/export_dir
 ```
+As output, it will print the pose — including the quaternion vector (qvec: QX, QY, QZ, QW) and translation vector (tvec) — of the Blackfly S BFS-U3-120S4C camera.
 
 ## Documentation
 To generate the rst files source files for documentation, run
@@ -46,5 +47,6 @@ Then to create the documentation HTML files, run
 ```bash
 sphinx-build -b html docs/source/ docs/build/html
 ```
+
 
 
