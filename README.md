@@ -51,7 +51,7 @@ Also, show the pose of camera.
 To generate the rst files source files for documentation, run
 
 ```bash
-sphinx-apidoc -o docs/source/ src
+sphinx-apidoc -o docs/source/ src/sfm
 ```
 Then to create the documentation HTML files, run
 ```bash
