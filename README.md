@@ -1,16 +1,18 @@
-# aind-python-library-template
+# sfm
 [![License](https://img.shields.io/badge/license-MIT-brightgreen)](LICENSE)
 
+This project provides a lightweight, modular implementation of Structure-from-Motion (SfM) for 3D reconstruction using feature extraction, matching, and camera localization. It supports integration with SuperPoint for feature extraction, LightGlue for matching, and COLMAP models within the SfM pipeline.
 
-This is a repository template to quickly setup a python library project. This repository utilizes a tool called **uv** to handle all dependency and package management. For more information on this tool go to the [uv wiki](https://docs.astral.sh/uv/). 
 
 ##  Getting Started
-
+### Installation
 ```bash
-pip install -e .
-python -m sfm.main
+git clone https://github.com/AllenNeuralDynamics/sfm.git
+cd sfm
+pip install .
 ```
-### Optional: Enable SuperPoint + SuperGlue Reticle Detection
+
+### Enable SuperPoint + SuperGlue Reticle Detection
 Parallax supports reticle detection using SuperPoint + LightGlue.
 To enable reticle detection using SuperPoint + SuperGlue, you must manually download 'SuperGluePretrainedNetwork' pretrained models.
 
@@ -34,8 +36,20 @@ sfm/
 │               └── superglue_indoor.pth
 ```
 
+Run,
+
+```bash
+python -m sfm.scripts --image_dir /path/to/img_dir --query myimage.jpg --export_dir /path/to/export_dir
+```
+As output, it will print the pose — including the quaternion vector (qvec: QX, QY, QZ, QW) and translation vector (tvec) — of the Blackfly S BFS-U3-120S4C camera.
+Also, show the pose of camera. 
+
+<img width="800" alt="example" src="https://github.com/user-attachments/assets/f8de8ba7-3d1d-4983-bfbf-992ff3482741" />
+
+
 ## Documentation
 To generate the rst files source files for documentation, run
+
 ```bash
 sphinx-apidoc -o docs/source/ src
 ```
@@ -43,5 +57,6 @@ Then to create the documentation HTML files, run
 ```bash
 sphinx-build -b html docs/source/ docs/build/html
 ```
+
 
 
