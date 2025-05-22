@@ -37,7 +37,8 @@ python -m sfm.scripts --image_dir /path/to/img_dir --query myimage.jpg --export_
 ```
 As output, it will print the pose — including the quaternion vector (qvec: QX, QY, QZ, QW) and translation vector (tvec) — of the Blackfly S BFS-U3-120S4C camera.
 Also, show the pose of camera. 
-<img width="500" alt="example" src="https://github.com/user-attachments/assets/f8de8ba7-3d1d-4983-bfbf-992ff3482741" />
+
+<img width="800" alt="example" src="https://github.com/user-attachments/assets/f8de8ba7-3d1d-4983-bfbf-992ff3482741" />
 
 
 ## Documentation
