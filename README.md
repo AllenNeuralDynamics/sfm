@@ -30,6 +30,7 @@ sfm/
 │               └── superglue_indoor.pth
 ```
 
+Run,
 
 ```bash
 python -m sfm.scripts --image_dir /path/to/img_dir --query myimage.jpg --export_dir /path/to/export_dir
