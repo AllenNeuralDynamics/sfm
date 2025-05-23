@@ -1,3 +1,6 @@
+# Adapted from Hierarchical-Localization:
+# https://github.com/cvg/Hierarchical-Localization
+
 import pprint
 from pathlib import Path
 from typing import Dict, Optional, Union

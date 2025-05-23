@@ -1,3 +1,6 @@
+# Adapted from Hierarchical-Localization:
+# https://github.com/cvg/Hierarchical-Localization
+
 """
 3D visualization based on plotly.
 Works for a small number of points and cameras, might be slow otherwise.

@@ -1,3 +1,6 @@
+# Adapted from Hierarchical-Localization:
+# https://github.com/cvg/Hierarchical-Localization
+
 from pathlib import Path
 from typing import Tuple
 
