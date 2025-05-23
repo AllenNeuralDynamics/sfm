@@ -1,4 +1,6 @@
-import argparse
+# Adapted from Hierarchical-Localization:
+# https://github.com/cvg/Hierarchical-Localization
+
 import pprint
 from functools import partial
 from pathlib import Path

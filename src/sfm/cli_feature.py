@@ -1,5 +1,3 @@
-
-import time
 from sfm.extract_features import main as extract_features_main
 from sfm.config import feature_conf
 from pathlib import Path
