@@ -7,10 +7,10 @@ feature_conf_list = {
         "model": {
             "name": "superpoint",
             "nms_radius": 3,
-            "max_keypoints": 1024,
-            "keypoint_threshold": 0.005, #0.005–0.2
+            "max_keypoints": 2048,
+            "keypoint_threshold": 0.01, #0.005–0.2
             "sinkhorn_iterations": 20,
-            "match_threshold'": 0.05,   #0.05 (low confidence) - 0.5 (high confidence)
+            "match_threshold'": 0.3,   #0.05 (low confidence) - 0.5 (high confidence)
         },
         "preprocessing": {
             "grayscale": True,
