@@ -9,7 +9,7 @@ authors = [
   { name = "Hanna Lee", email = "hanna.lee@alleninstitute.org" },
 ]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.8"
 dependencies = [
   "pycolmap==3.11",
   "plotly",
@@ -18,8 +18,11 @@ dependencies = [
   "Pillow",
   "tqdm",
   "lightglue @ git+https://github.com/cvg/LightGlue.git",
-  "torch @ https://download.pytorch.org/whl/cpu/torch-2.1.0%2Bcpu-cp310-cp310-win_amd64.whl",
+  "torch>=2.5.1",
+  "torchvision>=0.20.1",
+  "numpy>=1.24.4",
 ]
+
 
 [tool.pytest.ini_options]
 pythonpath = ["src", "tests"]
