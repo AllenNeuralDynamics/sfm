@@ -5,6 +5,8 @@ This project provides a lightweight, modular implementation of Structure-from-Mo
 
 
 ##  Getting Started
+`requires-python = ">=3.10"`
+
 ### Installation
 ```bash
 git clone https://github.com/AllenNeuralDynamics/sfm.git
