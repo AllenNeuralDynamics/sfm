@@ -5,7 +5,7 @@ This project provides a lightweight, modular implementation of Structure-from-Mo
 
 
 ##  Getting Started
-`requires-python = ">=3.10"`
+`requires-python = ">=3.8"`
 
 ### Installation
 ```bash
