@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -18,9 +18,16 @@ dependencies = [
   "Pillow",
   "tqdm",
   "lightglue @ git+https://github.com/cvg/LightGlue.git",
-  "torch>=2.5.1",
-  "torchvision>=0.20.1",
-  "numpy>=1.24.4",
+  
+  # Python 3.10+
+  'torch>=2.5.1; python_version >= "3.10"',
+  'torchvision>=0.20.1; python_version >= "3.10"',
+  'numpy>=1.24.4; python_version >= "3.10"',
+
+  # Python < 3.10 (e.g., 3.8/3.9)
+  'torch==2.4.1; python_version < "3.10"',
+  'torchvision==0.19.1; python_version < "3.10"',
+  'numpy<2.0; python_version < "3.10"',
 ]
 
 
