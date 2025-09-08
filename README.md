@@ -11,7 +11,7 @@ This project provides a lightweight, modular implementation of Structure-from-Mo
 ```bash
 git clone https://github.com/AllenNeuralDynamics/sfm.git
 cd sfm
-pip install .
+pip install -e .
 ```
 
 ### Enable SuperPoint + SuperGlue Reticle Detection
@@ -48,6 +48,12 @@ Also, show the pose of camera.
 
 <img width="800" alt="example" src="https://github.com/user-attachments/assets/f8de8ba7-3d1d-4983-bfbf-992ff3482741" />
 
+
+### Example
+Run the following command to visualize the results:
+```bash
+python -m sfm.scripts --image_dir .\tests\test_img_dir\ --query img.png --export_dir .\tests\output\
+```
 
 ## Documentation
 To generate the rst files source files for documentation, run
